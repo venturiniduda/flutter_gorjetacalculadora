@@ -17,7 +17,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calcular Gorgeja'),
+        title: Text('Calcular Gorjeta'),
+        centerTitle: true,
         titleTextStyle: TextStyle(),
       ),
       body: Form(
