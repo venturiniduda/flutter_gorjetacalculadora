@@ -1,3 +1,5 @@
+// import 'dart:ffi';
+// import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,6 +14,7 @@ class _HomeViewState extends State<HomeView> {
   var txtVlrConta = TextEditingController();
   var txtPGorjeta = TextEditingController();
   bool arredondar = false;
+  double totalConta = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +65,29 @@ class _HomeViewState extends State<HomeView> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(30, 45),
+                        minimumSize: Size(35, 40),
                         textStyle: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        // calculo gorjeta aqui
-                        if (arredondar == false) {
-                          // arredondar aqui
+                        // calculo gorjeta:
+                        totalConta = double.parse(txtVlrConta.text) +
+                            (double.parse(txtVlrConta.text) *
+                                (double.parse(txtPGorjeta.text) / 100));
+                        if (arredondar == true) {
+                          // arredondar:
+                          totalConta = totalConta.roundToDouble();
                         }
+                        setState(() {});
                       },
                       child: Text('calcular'),
                     ),
                   ),
                 ],
               ),
+              SizedBox(
+                height: 15,
+              ),
+              Text('${totalConta.toStringAsFixed(2)}'),
             ],
           ),
         ),
